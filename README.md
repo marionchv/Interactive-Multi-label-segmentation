@@ -19,7 +19,7 @@ The values for $f$ are stored in a NumPy array of dimension $3 \times (n \times 
 
 First, we have to compute the values of the space kernel width for each position and each region. Then we compute the values of the Gaussian kernels for space and color. My implementation is not very efficient, especially when the size of scribbles increases. It would probably be possible to speed up the algorithm by doing the calculations in parallel.
 
-Concerning $g$, we have to compute the image gradient. This is done by forward differences as detailed in a paper from [Nieuwenhuis *et al.*.](https://vision.in.tum.de/_media/spezial/bib/nieuwenhuis-et-al-ijcv13.pdf)
+Concerning $g$, we have to compute the image gradient. This is done by forward differences as detailed in a paper from [Nieuwenhuis *et al*](https://vision.in.tum.de/_media/spezial/bib/nieuwenhuis-et-al-ijcv13.pdf).
 
 ## Primal Dual optimization
 
@@ -28,7 +28,7 @@ The main part of the code is the `primal_dual_optimization`, which takes as argu
 For the initialization, we start with values of $\theta_i$ randomly taken between 0 and 1.  
 For step 1 (projected gradient ascent in the dual variables) we need to compute the gradient of $\theta_i$. This is done with the same method as for calculating the gradient of the image.
 
-Concerning the gradient descent in the primal variables, we obtain the divergence of $\xi_i$ by computing backward differences, as explained in the paper from [Nieuwenhuis *et al.*.](https://vision.in.tum.de/_media/spezial/bib/nieuwenhuis-et-al-ijcv13.pdf)
+Concerning the gradient descent in the primal variables, we obtain the divergence of $\xi_i$ by computing backward differences, as explained in the paper from [Nieuwenhuis *et al*](https://vision.in.tum.de/_media/spezial/bib/nieuwenhuis-et-al-ijcv13.pdf).
 
 ## Projection on $\kappa_g$ and $\tilde{\mathcal{B}}$
 
