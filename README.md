@@ -1,6 +1,6 @@
 # Interactive Multi-label Segmentation
 
-This repository is based on an article written by Claudia Nieuwenhuis and Daniel Cremers (https://vision.in.tum.de/_media/spezial/bib/nieuwenhuis-cremers-pami12.pdf). This article published in 2012 proposes a method for multi-label segmentation thanks to a statistical framework that takes into account the spatial variation of color distribution.
+This repository is based on the article [*Spatially Varying Color Distributions for Interactive Multi-Label Segmentation*](https://vision.in.tum.de/_media/spezial/bib/nieuwenhuis-cremers-pami12.pdf) written by Claudia Nieuwenhuis and Daniel Cremers. This article published in 2012 proposes a method for multi-label segmentation thanks to a statistical framework that takes into account the spatial variation of color distribution.
 
 The `Image_seg_main.py` file contains the python code and a notebook allowing to test the algorithm on an input image with given scribbles.
 
@@ -8,7 +8,7 @@ The `Image_seg_main.py` file contains the python code and a notebook allowing to
 
 To draw scribbles on the image, you have to run `Get_scribbles.py`. Before that, you have to choose the input image and the number of regions. The script will open a window with the input image. By clicking in two places, we can then draw a line allowing to label the pixels of this line in the first region. We can repeat this maneuver as many times as we want. Then, to go to the next region, we close the current window and we draw new lines for the second region.
 
-The positions of the clicks for each region are stored in the dictionary *Scribbles*. Then the positions of all pixels on lines are obtained with the function `get_entire_scribbles`, which uses Bresenham's Line Algorithm (https://gist.github.com/Siyeong-Lee/fdacece959c6973603dbda955e45637b).
+The positions of the clicks for each region are stored in the dictionary *Scribbles*. Then the positions of all pixels on lines are obtained with the function `get_entire_scribbles`, which uses [*Bresenham's Line Algorithm*](https://gist.github.com/Siyeong-Lee/fdacece959c6973603dbda955e45637b).
 
 ## Compute f and g
 
@@ -19,8 +19,7 @@ The values for $f$ are stored in a NumPy array of dimension $3 \times (n \times 
 
 First, we have to compute the values of the space kernel width for each position and each region. Then we compute the values of the Gaussian kernels for space and color. My implementation is not very efficient, especially when the size of scribbles increases. It would probably be possible to speed up the algorithm by doing the calculations in parallel.
 
-Concerning $g$, we have to compute the image gradient. This is done by forward differences as detailed in  
-https://vision.in.tum.de/_media/spezial/bib/nieuwenhuis-et-al-ijcv13.pdf.
+Concerning $g$, we have to compute the image gradient. This is done by forward differences as detailed in a paper from [Nieuwenhuis *et al.*.](https://vision.in.tum.de/_media/spezial/bib/nieuwenhuis-et-al-ijcv13.pdf)
 
 ## Primal Dual optimization
 
@@ -29,8 +28,7 @@ The main part of the code is the `primal_dual_optimization`, which takes as argu
 For the initialization, we start with values of $\theta_i$ randomly taken between 0 and 1.  
 For step 1 (projected gradient ascent in the dual variables) we need to compute the gradient of $\theta_i$. This is done with the same method as for calculating the gradient of the image.
 
-Concerning the gradient descent in the primal variables, we obtain the divergence of $\xi_i$ by computing backward differences, as explained in  
-https://vision.in.tum.de/_media/spezial/bib/nieuwenhuis-et-al-ijcv13.pdf.
+Concerning the gradient descent in the primal variables, we obtain the divergence of $\xi_i$ by computing backward differences, as explained in the paper from [Nieuwenhuis *et al.*.](https://vision.in.tum.de/_media/spezial/bib/nieuwenhuis-et-al-ijcv13.pdf)
 
 ## Projection on $\kappa_g$ and $\tilde{\mathcal{B}}$
 
